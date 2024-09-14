@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import PageComponent from "../components/PageComponent";
 import styles from "../styles/Page.module.css";
+import { EventEmitter } from "stream";
+import { IoSparklesOutline } from "react-icons/io5";
 
 const DEFAULT_BUDGET = 100;
+const DEFAULT_DURATION = 1;
 export default function Home() {
   const [budget, setBudget] = useState<number>(DEFAULT_BUDGET);
+  const [duration, setDuration] = useState<number>(DEFAULT_DURATION);
   const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key == "Enter" || event.key == "Escape") {
       event.currentTarget.blur();
@@ -25,6 +29,12 @@ export default function Home() {
       event.currentTarget.value = value.toFixed(2);
     }
   };
+  const handleSliderChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(event.currentTarget.value);
+    if (duration != value) {
+      setDuration(value);
+    }
+  };
   return (
     <PageComponent>
       <div className="background">
@@ -41,7 +51,19 @@ export default function Home() {
             />
           </div>
           <div className={styles.durationContainer}>
-            <input type="range" min={1} max={14} step={1} />
+            <p>Duration: {duration + (duration > 1 ? " Days" : " Day")}</p>
+            <input
+              type="range"
+              min={1}
+              max={14}
+              step={1}
+              onChange={handleSliderChanged}
+              defaultValue={DEFAULT_DURATION}
+            />
+          </div>
+          <div className={styles.generateButton}>
+            <IoSparklesOutline size={"2vw"} />
+            Generate
           </div>
         </div>
       </div>
