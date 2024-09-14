@@ -4,11 +4,6 @@ const { AzureOpenAI } = require("openai");
 const cors = require("cors");
 
 const endpoint = "";
-
-example_json = {
-  ingredient: [{name: "", cost: ""}],
-  days: [{breakfast: "", lunch: "", dinner: ""}],
-};
 // const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
 const apiKey = "";
 const apiVersion = "2024-05-01-preview";
@@ -34,7 +29,7 @@ app.post("/ask", async (req, res) => {
     });
     const result = await client.chat.completions.create({
       messages: [
-        { role: "system", content: "" },
+        { role: "system", content: "You are a helpful assistant." },
         {
           role: "user",
           content: "Does Azure OpenAI support customer managed keys?",
