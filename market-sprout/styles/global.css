@@ -1,6 +1,9 @@
-* {
-  margin: 0px;
-  padding: 0px;
+:root {
+  --text: #0d100b;
+  --background: #f5f8f3;
+  --primary: #7cba5b;
+  --secondary: #a8dc8d;
+  --accent: #92e06a;
 }
 html,
 body {
