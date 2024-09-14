@@ -1,0 +1,34 @@
+:root {
+  --text: #0d100b;
+  --background: #f5f8f3;
+  --primary: #7cba5b;
+  --secondary: #a8dc8d;
+  --accent: #92e06a;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+anti-margin {
+  margin: -8px;
+  padding: 0px;
+}
