@@ -25,6 +25,7 @@
   flex-direction: row;
   align-items: center;
   gap: 10px;
+  font-weight: bold;
 }
 .headerContainer {
   width: 100%;

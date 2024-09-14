@@ -39,6 +39,7 @@ export default function Home() {
               onBlur={handleOnBlur}
             />
           </div>
+          <div className={styles.durationContainer}></div>
         </div>
       </div>
     </PageComponent>

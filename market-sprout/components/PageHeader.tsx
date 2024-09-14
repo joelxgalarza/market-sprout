@@ -4,7 +4,7 @@ import icon from "../public/icon.svg";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { IoMenu } from "react-icons/io5";
+import { IoMenu, IoClose } from "react-icons/io5";
 export default function PageHeader() {
   const router = useRouter();
   const [active, setActive] = useState<boolean>(false);
@@ -27,7 +27,8 @@ export default function PageHeader() {
         </Link>
       </div>
       <div className={styles.headerButton} onClick={() => setActive(!active)}>
-        <IoMenu size={40} />
+        {active && <IoClose size={40} />}
+        {!active && <IoMenu size={40} />}
       </div>
     </div>
   );
