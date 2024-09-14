@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PageComponent from "../components/PageComponent";
 import styles from "../styles/Page.module.css";
+
 const DEFAULT_BUDGET = 100;
 export default function Home() {
   const [budget, setBudget] = useState<number>(DEFAULT_BUDGET);
@@ -39,7 +40,9 @@ export default function Home() {
               onBlur={handleOnBlur}
             />
           </div>
-          <div className={styles.durationContainer}></div>
+          <div className={styles.durationContainer}>
+            <input type="range" min={1} max={14} step={1} />
+          </div>
         </div>
       </div>
     </PageComponent>

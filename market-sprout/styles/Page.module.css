@@ -150,3 +150,7 @@
   font-size: var(--font-small);
   text-wrap: nowrap;
 }
+
+.durationContainer {
+  background-color: red;
+}
