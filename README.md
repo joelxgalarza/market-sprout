@@ -1,2 +1,2 @@
 # market-sprout
-Connecting price concious individuals to healthier options
+Connecting price conscious individuals to healthier options
