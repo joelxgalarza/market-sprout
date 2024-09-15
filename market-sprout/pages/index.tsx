@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PageComponent from "../components/PageComponent";
 import styles from "../styles/Page.module.css";
 
@@ -13,6 +13,9 @@ export default function Home() {
   const [budget, setBudget] = useState<number>(DEFAULT_BUDGET);
   const [duration, setDuration] = useState<number>(DEFAULT_DURATION);
   const [data, setData] = useState<data>(undefined);
+  const [refresh, setRefresh] = useState<boolean>(false);
+  const fetchingState = useRef<boolean>(false);
+
   const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key == "Enter" || event.key == "Escape") {
       event.currentTarget.blur();
@@ -44,17 +47,31 @@ export default function Home() {
     }
   };
   const handleGenerate = async (event: any) => {
-    if (data != undefined) {
+    if (data != undefined || fetchingState.current) {
       return;
     }
-    fetchData(budget, duration).then((response) => {
-      if (response.status && response.data != undefined) {
-        setData(response.data);
-      } else {
-        console.log("ERROR", response);
-      }
-    });
+    fetchingState.current = true;
+    fetchData(budget, duration)
+      .then((response) => {
+        if (response.status && response.data != undefined) {
+          setData(response.data);
+        } else {
+          console.log("ERROR", response);
+        }
+        fetchingState.current = false;
+        setRefresh(!refresh);
+      })
+      .catch((error) => {
+        console.log(error);
+        fetchingState.current = false;
+        setRefresh((prevState) => !prevState);
+      });
+    setRefresh(!refresh);
   };
+  console.log(
+    (data != undefined && !fetchingState.current) ||
+      (data == undefined && fetchingState.current)
+  );
   return (
     <PageComponent>
       <div className={styles.backdrop}>
@@ -84,9 +101,23 @@ export default function Home() {
                 defaultValue={DEFAULT_DURATION}
               />
             </div>
-            <div className={styles.generateButton} onClick={handleGenerate}>
+            <div
+              className={
+                (data != undefined && !fetchingState.current) ||
+                (data == undefined && fetchingState.current)
+                  ? styles.inactiveButton
+                  : styles.generateButton
+              }
+              onClick={handleGenerate}
+            >
               <IoSparklesOutline size={"2vw"} />
-              Generate
+              {!fetchingState.current && data == undefined
+                ? "Generate"
+                : !fetchingState.current && data != undefined
+                ? "Generated data below"
+                : fetchingState
+                ? "Generating data"
+                : "[ERROR]"}
             </div>
           </div>
         </div>
