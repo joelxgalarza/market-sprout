@@ -77,7 +77,7 @@ export default function Home() {
       <div className={styles.backdrop}>
         <div className={styles.frosted}>
           <div className={styles.contentContainer}>
-            <h1>Market-Sprout</h1>
+            <h1>Market Sprout</h1>
             <p>Sustainable, Fresh, Local</p>
             <div style={{ height: 20 }} />
             <div className={styles.budgetContainer}>
