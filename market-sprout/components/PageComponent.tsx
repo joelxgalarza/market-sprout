@@ -3,7 +3,7 @@ import styles from "../styles/Page.module.css";
 export default function PageComponent({ children }: { children }) {
   return (
     <div className={styles.pageContainer}>
-      <PageHeader />
+      {/* <PageHeader /> */}
       {children}
     </div>
   );

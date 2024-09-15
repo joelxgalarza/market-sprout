@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import PageComponent from "../components/PageComponent";
 import styles from "../styles/Page.module.css";
-import { EventEmitter } from "stream";
+
 import { IoSparklesOutline } from "react-icons/io5";
-import { symlink } from "fs";
+import { data, mealPlan } from "../components/data";
+import DataDisplay from "../components/DataDisplay";
 
 const DEFAULT_BUDGET = 100;
 const DEFAULT_DURATION = 1;
 export default function Home() {
   const [budget, setBudget] = useState<number>(DEFAULT_BUDGET);
   const [duration, setDuration] = useState<number>(DEFAULT_DURATION);
+  const [data, setData] = useState<data>(undefined);
   const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key == "Enter" || event.key == "Escape") {
       event.currentTarget.blur();
@@ -69,13 +71,17 @@ export default function Home() {
                 defaultValue={DEFAULT_DURATION}
               />
             </div>
-            <div className={styles.generateButton}>
+            <div
+              className={styles.generateButton}
+              onClick={() => setData(mealPlan)}
+            >
               <IoSparklesOutline size={"2vw"} />
               Generate
             </div>
           </div>
         </div>
       </div>
+      {data != undefined && <DataDisplay data={data} />}
     </PageComponent>
   );
 }
