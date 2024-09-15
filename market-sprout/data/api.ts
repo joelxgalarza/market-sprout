@@ -2,9 +2,9 @@ import { data } from "../components/data";
 
 const { AzureOpenAI } = require("openai");
 
-const endpoint = process.env["ENDPOINT"];
+const endpoint = process.env.ENDPOINT;
 // const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
-const apiKey = process.env["API_KEY"];
+const apiKey = process.env.API_KEY;
 const apiVersion = "2024-05-01-preview";
 const deployment = "GPT-4o"; //This must match your deployment name.
 
