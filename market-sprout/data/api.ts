@@ -13,6 +13,9 @@ export function fetchData(
   days
 ): Promise<{ status: boolean; data?: data }> {
   return new Promise((resolve, reject) => {
+    const endpoint = process.env.NEXT_PUBLIC_ENDPOINT;
+    // const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
     const client = new AzureOpenAI({
       endpoint: endpoint,
       apiKey: apiKey,
