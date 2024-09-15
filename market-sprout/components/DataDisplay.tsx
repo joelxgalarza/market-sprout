@@ -13,7 +13,7 @@ export default function DataDisplay({ data }: { data: data }) {
             index: number
           ) => {
             return (
-              <div className={styles.dayContainer}>
+              <div className={styles.dayContainer} key={index + day.breakfast}>
                 <div className={styles.dayNumber}>Day: {index + 1}</div>
                 <div className={styles.dayMenu}>
                   <p>
@@ -57,13 +57,16 @@ function ShoppingList({
       <div className={styles.dropdownList}>
         {ingredients.map((ingredient: { name: string; cost: number }) => {
           return (
-            <div className={styles.dropdownListItem}>
+            <div
+              className={styles.dropdownListItem}
+              key={ingredient.name + ingredient.cost}
+            >
               <h4>{ingredient.name}</h4>
               <p>${ingredient.cost.toFixed(2)}</p>
             </div>
           );
         })}
-        <div />
+        {ingredients.length % 2 == 0 && <div />}
         <div className={styles.dropdownListItem}>
           <h4>Total:</h4>
           <p>${costTotal.toFixed(2)}</p>

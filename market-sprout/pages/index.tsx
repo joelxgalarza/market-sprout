@@ -3,8 +3,9 @@ import PageComponent from "../components/PageComponent";
 import styles from "../styles/Page.module.css";
 
 import { IoSparklesOutline } from "react-icons/io5";
-import { data, mealPlan } from "../components/data";
+import { data } from "../components/data";
 import DataDisplay from "../components/DataDisplay";
+import { fetchData } from "../data/api";
 
 const DEFAULT_BUDGET = 100;
 const DEFAULT_DURATION = 1;
@@ -42,6 +43,18 @@ export default function Home() {
       setDuration(value);
     }
   };
+  const handleGenerate = async (event: any) => {
+    if (data != undefined) {
+      return;
+    }
+    fetchData(budget, duration).then((response) => {
+      if (response.status && response.data != undefined) {
+        setData(response.data);
+      } else {
+        console.log("ERROR", response);
+      }
+    });
+  };
   return (
     <PageComponent>
       <div className={styles.backdrop}>
@@ -71,10 +84,7 @@ export default function Home() {
                 defaultValue={DEFAULT_DURATION}
               />
             </div>
-            <div
-              className={styles.generateButton}
-              onClick={() => setData(mealPlan)}
-            >
+            <div className={styles.generateButton} onClick={handleGenerate}>
               <IoSparklesOutline size={"2vw"} />
               Generate
             </div>
