@@ -1,4 +1,4 @@
-import { IoCaretDown } from "react-icons/io5";
+import { IoCaretDown, IoClipboardOutline } from "react-icons/io5";
 import styles from "../styles/Data.module.css";
 import { data } from "./data";
 import React, { useEffect, useState } from "react";
@@ -6,6 +6,7 @@ export default function DataDisplay({ data }: { data: data }) {
   return (
     <div>
       <ShoppingList ingredients={data.ingredients} />
+
       <div className={styles.dayListContianer}>
         {data.days.map(
           (
@@ -70,6 +71,22 @@ function ShoppingList({
         <div className={styles.dropdownListItem}>
           <h4>Total:</h4>
           <p>${costTotal.toFixed(2)}</p>
+        </div>
+      </div>
+      <div className={styles.copyCenterContainer}>
+        <div
+          onClick={() => {
+            const string = ingredients.reduce(
+              (prevValue, ingredient, index) =>
+                prevValue + (index + 1) + ". " + ingredient.name + "\n",
+              ""
+            );
+            navigator.clipboard.writeText(string);
+          }}
+          className={styles.copyContainer}
+        >
+          <IoClipboardOutline size={40} />
+          Click to copy list to clipboard.
         </div>
       </div>
     </React.Fragment>

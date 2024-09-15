@@ -2,7 +2,7 @@ import { data } from "../components/data";
 
 const { AzureOpenAI } = require("openai");
 
-const endpoint = "https://shoppinglist.openai.azure.com/";
+const endpoint = process.env["ENDPOINT"];
 // const apiKey = process.env["AZURE_OPENAI_API_KEY"] || "<api key>";
 const apiKey = process.env["API_KEY"];
 const apiVersion = "2024-05-01-preview";
