@@ -1,2 +1,2 @@
 # market-sprout
-Connecting price conscious individuals to healthier options
+grocery list generator with daily calorie constraints
